@@ -56,6 +56,7 @@ take a look at the [Ruby Example Tests](http://www.notimplementedyet.com) projec
     $ export SAUCE_USERNAME=<your Sauce Labs username>
 	$ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
     ```
+    If you don't do this, the Rakefile will complain.
 
 3. Project Dependencies
 	* Install packages (Use sudo if necessary)
@@ -77,7 +78,7 @@ take a look at the [Ruby Example Tests](http://www.notimplementedyet.com) projec
 
 2. Run Cucumber Features on Sauce in Parallel:
 	```
-	$ bundle exec rake test_cucumber
+	$ bundle exec rake clean test_cucumber
 	```
 
 3. Execute Tests on Sauce in Parallel using an environment variable:
@@ -125,3 +126,7 @@ This project is available under the terms of the [MIT License](http://opensource
 
 ##### [Stack Overflow](http://stackoverflow.com/)
 * A great resource to search for issues not explicitly covered by documentation.
+
+#### [Alternate Example Project](https://github.com/djangofan/watir-cuke-starter)
+
+
