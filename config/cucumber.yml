@@ -1,0 +1,8 @@
+# config/cucumber.yaml
+<% report_out_dir = "#{ENV['JUNIT_DIR']}" %>
+<% test_batch_id = "#{ENV['TEST_PROCESS_NUMBER']}" %>
+
+parallel_reports: >
+  --format html --out <%= report_out_dir %>/scenario_<%= test_batch_id %>.html
+  --format junit --out <%= report_out_dir %>/junit_<%= test_batch_id %>/
+

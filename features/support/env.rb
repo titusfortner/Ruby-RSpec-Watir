@@ -13,16 +13,20 @@ require_relative '../support/pages/guinea_pig_page'
 
 Before do |scenario|
   @name = "#{scenario.feature.name} - #{scenario.name}"
-  capabilities = {name: @name,
-                  build: ENV['BUILD_TAG'] ||= "Unknown Build - #{Time.now.to_i}"}
-
+  capabilities = {name: @name, build: ENV['BUILD_TAG'] ||= "#{Time.now.strftime("Unlabeled build: d%m%d_t%H%M%S")}"}
   capabilities[:version] = ENV['version'] if ENV['version']
   capabilities[:browserName] = ENV['browserName'] if ENV['browserName']
   capabilities[:platform] = ENV['platform'] if ENV['platform']
+  capabilities[:platform] = ENV['platform'] if ENV['platform']
+  #capabilities[:tunnelIdentifier] = ENV['SAUCE_TUNNEL_ID']
+  #capabilities[:parentTunnel] = ENV['SAUCE_PARENT_ACCOUNT']
+  #@capabilities[:screenResolution] = '1440x900'
+  #@capabilities[:maxDuration] = '300'
+  #@capabilities[:tags] = ['1440x900','watir']
+
   url = "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub".strip
 
-  @browser = Watir::Browser.new :remote, {url: url,
-                                          desired_capabilities: capabilities}
+  @browser = Watir::Browser.new :remote, {url: url, desired_capabilities: capabilities}
 
   if ENV['APPLITOOLS_ACCESS_KEY']
     require 'eyes_selenium'
