@@ -1,7 +1,12 @@
 require 'rspec/core/rake_task'
 require 'parallel_cucumber'
+require 'rake/clean'
 
 @success = true
+CLEAN.include("reports/**/junit*")
+CLEAN.include("reports/**/TEST*.xml")
+CLEAN.include("reports/**/*.html")
+CLEAN.include("*.log")
 
 # Cucumber and RSpec can not be run at the same time
 # The default task uses the runner based on the setting of ENV['TEST_RUNNER']
@@ -32,7 +37,7 @@ end
 task :run_cucumber do
 	FileUtils.mkpath(ENV['JUNIT_DIR'])
 	begin
-		@result = system "parallel_cucumber features -o \"--format junit --out #{ENV['JUNIT_DIR']} --format pretty\" -n 20"
+		@result = system "parallel_cucumber features -o \"--format pretty --profile parallel_reports\" -n 20"
 	ensure
 		@success &= @result
 	end
